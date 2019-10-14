@@ -48,7 +48,7 @@ runmodel2 <- function(form = NULL, d = NULL, m = NULL){
 }
 
 
-dat2 <- read.csv("coe_treaty_ratifications_final_dataset.csv", stringsAsFactors = FALSE)
+dat2 <- read.csv("coe_treaty_ratifications_final_dataset1.csv", stringsAsFactors = FALSE)
 dim(dat2)
 
 
@@ -305,10 +305,12 @@ tdf2 <- df %>%
 tdf2
 
 # write.csv2(tdf2, file = paste0("final_results_models_cox_", Sys.Date(), "b.csv"), row.names = FALSE, na = "n/a")
-# I use write.csv2 because I am located in Europe
+# I use write.csv2 because I am located in Europe and can then check in spreadsheet format
 
 df_sub <- df[!duplicated(df[ , c("model", "n")]), ]
 
+
+## visualise coefficients (not presented in the paper)
 p_cox <- ggplot(df, aes(estimate, term)) +
   geom_vline(xintercept = 0, linetype = 2) +
   geom_segment(aes(x = estimate - se99, xend = estimate + se99, y = term, yend = term),
